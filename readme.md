@@ -3,13 +3,13 @@
  This script can be used to trigger [Bitrise](https://app.bitrise.io/app/2bee753c3b6709ca) to get customized build and then uplaod to Google Drive
 
 ## Prerequisition
-1. export "BITRISE_TOKEN" as enviromnent variable. To get BITRISE_TOKEN refer [Bitrise acquiring a Personal Access Token ](https://devcenter.bitrise.io/jp/api/authentication/)
-2. export "BITRISE_TRIGGER_TOKEN" as enviromnent variable. To get BITRISE_TRIGGER_TOKEN please go to [Fx LiteBitrise]https://app.bitrise.io/app/2bee753c3b6709ca#() > Start a Build > Advanced
+1. export BITRISE_TOKEN as enviromnent variable. To get BITRISE_TOKEN refer [Bitrise acquiring a Personal Access Token ](https://devcenter.bitrise.io/jp/api/authentication/)
+2. export BITRISE_TRIGGER_TOKEN as enviromnent variable. To get BITRISE_TRIGGER_TOKEN, please go to [Fx-Lite Bitrise](https://app.bitrise.io/app/2bee753c3b6709ca#() > [Start a Build] > [Advanced]
 
 
 ## Installation
 
-Use the package manager [pip3](https://pip.pypa.io/en/stable/) to install Remote Config Script.
+Use the package manager [pip3](https://pip.pypa.io/en/stable/) to install libraries.
 
 ```bash
 pip3 install requirements.txt
