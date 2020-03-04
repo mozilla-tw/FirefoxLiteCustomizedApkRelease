@@ -18,11 +18,13 @@ headers = {
 
 
 CHANNEL_DIC={   "MozNext2GooglePlay" : "t5cdv3e",
-                "MozNext2APKDownload" : "qd2shkv,
-                "Github" : "8wvdqfc",
-                "SamsungStore" : "bc7t7hv",
-                "XiaomiStore" : "2bzwbyc" 
+                # "MozNext2APKDownload" : "qd2shkv,
+                # "Github" : "8wvdqfc",
+                # "SamsungStore" : "bc7t7hv",
+                # "XiaomiStore" : "2bzwbyc" 
                 }
+
+FXLITE_RELEASES_FID = "1KP5LzrwVm9jcdcxlcnjKnu-jDjYzaNSR"
 
 def build_customized_apk(): 
     """Trigger Bitrise to build customized apk
@@ -132,18 +134,34 @@ def download_customized_apk( channel , build_no , download_url):
     """
     resp = requests.get(download_url, allow_redirects= True )
     if resp.status_code == 200:
-        apkfileName = '{}_{}_({}).apk'.format( channel ,RELEASE_TAG , build_no)
-        open(apkfileName, 'wb').write(resp.content)
-        print('Retrieved customized apk file has been written to {}'.format(apkfileName))
+        apk_file_name = '{}_{}_({}).apk'.format( channel ,RELEASE_TAG , build_no)
+        open(apk_file_name, 'wb').write(resp.content)
+        print('Retrieved customized apk file has been written to {}'.format(apk_file_name))
+        return apk_file_name
     else:
         print('Unable to download customized apk')
         print(resp.text)
+
+def upload_to_drive(apk_file_name):
+    from pydrive.auth import GoogleAuth
+    from pydrive.drive import GoogleDrive
+
+    gauth = GoogleAuth()
+    gauth.LocalWebserverAuth()
+    drive = GoogleDrive(gauth)
+
+    apk_file = drive.CreateFile(
+        {"mimeType": "application/vnd.android.package-archive",
+        "parents": [ {"kind": "drive#fileLink", "id": FXLITE_RELEASES_FID} ] } )
+    apk_file.SetContentFile( apk_file_name )
+    apk_file.Upload()
+    print('Created file {} with mimeType {}'.format(apk_file['title'], apk_file['mimeType']))  
 
 
 def main():
     get_app_slug()
     build_slugs = build_customized_apk()
-    print('Show channel build_slug information {}'.format(build_slugs))
+    print('Show channel\'s build_slug information {}'.format(build_slugs))
 
     """
     Need to wait around 15 min to get generated build artifact . The hard code waiting time will improve in the future.
@@ -157,7 +175,8 @@ def main():
         build_slug , build_no = slug_info["build_slug"], slug_info["build_no"]
         artifact_slug = get_signed_apk_artifact_slug( build_slug)
         download_url = get_download_url( build_slug, artifact_slug)
-        download_customized_apk( channel, build_no, download_url)
+        apkfileName = download_customized_apk( channel, build_no, download_url)
+        upload_to_drive(apkfileName)
 
 if __name__ == '__main__':
     main()

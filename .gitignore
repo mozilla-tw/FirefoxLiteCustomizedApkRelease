@@ -1,2 +1,3 @@
 *.apk
 .DS_Store
+client_secrets.json
