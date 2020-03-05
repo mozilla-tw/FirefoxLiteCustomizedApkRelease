@@ -1,9 +1,8 @@
 # Firefox Lite Customized Apk Release Handy Tool
-
- This script can be used to trigger [Bitrise](https://app.bitrise.io/app/2bee753c3b6709ca) to get customized build and then uplaod to [Google Drive : FxLite Releases](https://drive.google.com/drive/u/0/folders/1KP5LzrwVm9jcdcxlcnjKnu-jDjYzaNSR)
+ This script can trigger [Bitrise CI](https://app.bitrise.io/app/2bee753c3b6709ca) to get customized build and then uplaod to [Google Drive : FxLite Releases](https://drive.google.com/drive/u/0/folders/1KP5LzrwVm9jcdcxlcnjKnu-jDjYzaNSR)
 
 ## Purpose
- To eliminate the toils of triggering Bitrise customized build manually for all [distribution channels](https://docs.google.com/document/d/15w7ZNYtJkpcPDkh6cfLtVl3O86IiIWljqfFxT_PPv8c/edit), download apks, rename apks and then upload to Google Drive. By using the script, it can reduce repetitive work, prevent human error and human interference, then ultimately boost team's productivity.
+ To eliminate the toils of a set of manual process 1) trigger Bitrise to get customized build for all [distribution channels](https://docs.google.com/document/d/15w7ZNYtJkpcPDkh6cfLtVl3O86IiIWljqfFxT_PPv8c/edit), 2) download apks from Bitrise, 3)rename apks locally and then 4) upload to Google Drive. By using the script, it can reduce repetitive work, prevent human error and human interference, then ultimately contribute to productivity.
 
 ## Prerequisition
 1. export BITRISE_TOKEN as enviromnent variable. To get BITRISE_TOKEN refer [Bitrise acquiring a Personal Access Token ](https://devcenter.bitrise.io/jp/api/authentication/)
@@ -16,7 +15,7 @@
 Use the package manager [pip3](https://pip.pypa.io/en/stable/) to install libraries.
 
 ```bash
-pip3 install requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ## Usage
