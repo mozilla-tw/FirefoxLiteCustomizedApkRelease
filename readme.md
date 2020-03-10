@@ -1,5 +1,5 @@
 # Firefox Lite Customized Apk Release Handy Tool
- This script can trigger [Bitrise CI](https://app.bitrise.io/app/2bee753c3b6709ca) to get customized build and then uplaod to [Google Drive : FxLite Releases](https://drive.google.com/drive/u/0/folders/1KP5LzrwVm9jcdcxlcnjKnu-jDjYzaNSR)
+ This script connects [Bitrise](https://app.bitrise.io/app/2bee753c3b6709ca) to trigger customized builds for different stores (e.g.Samsung, Xiaomi...). The generated builds will be automaically uplaoded to [Google Drive : FxLite Releases](https://drive.google.com/drive/u/0/folders/1KP5LzrwVm9jcdcxlcnjKnu-jDjYzaNSR) so that each store's distribution owner can start release. 
 
 ## Purpose
  To eliminate the toils of a set of manual process 1) trigger Bitrise to get customized build for all [distribution channels](https://docs.google.com/document/d/15w7ZNYtJkpcPDkh6cfLtVl3O86IiIWljqfFxT_PPv8c/edit), 2) download apks from Bitrise, 3)rename apks locally and then 4) upload to Google Drive. By using the script, it can reduce repetitive work, prevent human error and human interference, then ultimately contribute to productivity.
