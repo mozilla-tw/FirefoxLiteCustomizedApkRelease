@@ -23,7 +23,7 @@ pip3 install -r requirements.txt
 Please check a release tag exists in [Firefox Lite Release Tags](https://github.com/mozilla-tw/FirefoxLite/tags) before using the following commands:
 
 ```bash
-python3 customizedApkRelease.py --action=trigger --tag={release_tag}
+python3 customizedApkRelease.py --action=trigger --tag=[v2.1.11]
 ```
 ## Authors
 

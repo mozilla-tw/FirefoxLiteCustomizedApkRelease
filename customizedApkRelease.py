@@ -216,8 +216,7 @@ def main():
 
 
 if __name__ == '__main__':
-    drive = auth_drive()
-    upload_to_drive(drive, "SamsungStore_v2.1.11_(19004).apk")
+    main()
 
     """
     Testcase_1:
