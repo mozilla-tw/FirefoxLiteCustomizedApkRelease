@@ -3,6 +3,8 @@ import argparse
 import io
 import os
 import time
+from pydrive.auth import GoogleAuth
+from pydrive.drive import GoogleDrive
 
 BUILD_TRIGGER_TOKEN = os.getenv('BUILD_TRIGGER_TOKEN')
 BITRISE_TOKEN = os.getenv('BITRISE_TOKEN')
@@ -169,14 +171,14 @@ def download_customized_apk(channel, build_no, download_url):
         print(resp.text)
 
 
-def upload_to_drive(apk_file_name):
-    from pydrive.auth import GoogleAuth
-    from pydrive.drive import GoogleDrive
-
+def auth_drive():
     gauth = GoogleAuth()
     gauth.LocalWebserverAuth()
     drive = GoogleDrive(gauth)
+    return drive
 
+
+def upload_to_drive(drive, apk_file_name):
     apk_file = drive.CreateFile(
         {"mimeType": "application/vnd.android.package-archive",
          "parents": [{"kind": "drive#fileLink", "id": FXLITE_DRIVE_RELEASES_FID}]})
@@ -200,20 +202,22 @@ def main():
         """
         itertate each channel build-slug info to download apks
         """
+        drive = auth_drive()
         for channel, slug_info in build_slugs.items():
             build_slug, build_no = slug_info["build_slug"], slug_info["build_no"]
             artifact_slug = get_signed_apk_artifact_slug(build_slug)
             download_url = get_download_url(build_slug, artifact_slug)
             apkfileName = download_customized_apk(
                 channel, build_no, download_url)
-            upload_to_drive(apkfileName)
+            upload_to_drive(drive, apkfileName)
     else:
         print('''Invalid command. Please use the following commands:
         python3 customizedApkRelease.py --action=trigger --tag=v2.1.10''')
 
 
 if __name__ == '__main__':
-    main()
+    drive = auth_drive()
+    upload_to_drive(drive, "SamsungStore_v2.1.11_(19004).apk")
 
     """
     Testcase_1:
