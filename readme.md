@@ -1,8 +1,11 @@
 # Firefox Lite Customized Apk Release Handy Tool
  This script connects [Bitrise](https://app.bitrise.io/app/2bee753c3b6709ca) to trigger customized builds for different stores (e.g.Samsung, Xiaomi...). The generated builds will be automaically uplaoded to [Google Drive : FxLite Releases](https://drive.google.com/drive/u/0/folders/1KP5LzrwVm9jcdcxlcnjKnu-jDjYzaNSR) so that each store's distribution owner can start release. 
 
-## Purpose
- To eliminate the toils of a set of manual process 1) trigger Bitrise to get customized build for all [distribution channels](https://docs.google.com/document/d/15w7ZNYtJkpcPDkh6cfLtVl3O86IiIWljqfFxT_PPv8c/edit), 2) download apks from Bitrise, 3)rename apks locally and then 4) upload to Google Drive. By using the script, it can reduce repetitive work, prevent human error and human interference, then ultimately contribute to productivity.
+## Purpose  
+ Since Firefox Lite has a high demand to distribute our product to 5+ stores, each store with a customized Adjust tracker, the release team needs to generate those builds and uploaded on Drive so that the distribution owners can start release.
+
+## Paint Point 
+ Originally it a requires a set of manual processes 1) trigger Bitrise to get customized build for all [distribution channels](https://docs.google.com/document/d/15w7ZNYtJkpcPDkh6cfLtVl3O86IiIWljqfFxT_PPv8c/edit), 2) Wait until all build generated 2) download each customized apk from Bitrise, 3)rename those apks locally 4) upload to Google Drive. By using the script, it can reduce repetitive work, prevent human error and human interference, then ultimately contribute to productivity.
 
 ## Prerequisition
 1. export BITRISE_TOKEN as enviromnent variable. To get BITRISE_TOKEN refer [Bitrise acquiring a Personal Access Token ](https://devcenter.bitrise.io/jp/api/authentication/)
