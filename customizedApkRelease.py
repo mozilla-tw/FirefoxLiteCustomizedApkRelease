@@ -18,8 +18,7 @@ headers = {
 }
 
 
-CHANNEL_DIC = {"MozNext2GooglePlay": "t5cdv3e",
-               "Github": "8wvdqfc",
+CHANNEL_DIC = {"Github": "8wvdqfc",
                "MozNext2APKDownload": "qd2shkv",
                "SamsungStore": "bc7t7hv",
                "XiaomiStore": "2bzwbyc"
