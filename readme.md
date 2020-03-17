@@ -28,6 +28,7 @@ Please check a release tag exists in [Firefox Lite Release Tags](https://github.
 ```bash
 python3 customizedApkRelease.py --action=trigger --tag=[v2.1.11]
 ```
+When it asks for Google Drive access permission, please choose your Mozilla Account to upload.
 ## Authors
 
 * **[Daisy Liu](https://github.com/Daisy-pliu)** 

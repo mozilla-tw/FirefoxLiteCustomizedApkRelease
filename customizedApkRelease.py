@@ -63,7 +63,7 @@ def build_customized_apk(release_tag):
                 "build_slug": resp.json()['build_slug'],
                 "build_no": resp.json()['build_number']}
             print(
-                'build is triggered, you can go to Bitrise to check')
+                '{} build is triggered, you can go to Bitrise to check'.format(channel))
         else:
             print('Unable to tigger build')
             print(resp.text)
