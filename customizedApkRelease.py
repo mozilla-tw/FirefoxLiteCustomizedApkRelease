@@ -3,6 +3,9 @@ import argparse
 import io
 import os
 import time
+import requests
+
+from bs4 import BeautifulSoup
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 
@@ -187,15 +190,23 @@ def upload_to_drive(drive, apk_file_name):
         apk_file['title']))
 
 
+def get_tag():
+    url='https://github.com/mozilla-tw/FirefoxLite/tags'
+    html_doc = requests.get(url).text
+    parsed_html = BeautifulSoup(html_doc, "lxml")
+    version=(parsed_html.body.find('h4', attrs={'class':'flex-auto'}).text).strip()
+    return version
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--action')
-    parser.add_argument('--tag', help='release tag in Firefox Lite git repo')
+    tag_version = get_tag()
     args = parser.parse_args()
 
-    if args.action and args.action == 'trigger' and args.tag:
+    if args.action and args.action == 'trigger' and tag_version:
         get_app_slug()
-        build_slugs = build_customized_apk(args.tag)
+        build_slugs = build_customized_apk(tag_version)
         print('Show channel\'s build_slug information {}'.format(build_slugs))
 
         """
@@ -211,7 +222,7 @@ def main():
             upload_to_drive(drive, apkfileName)
     else:
         print('''Invalid command. Please use the following commands:
-        python3 customizedApkRelease.py --action=trigger --tag=v2.1.10''')
+        python3 customizedApkRelease.py --action=trigger ''')
 
 
 if __name__ == '__main__':
